@@ -7,7 +7,7 @@
 IVI(data, plot.size = 100, n.subplot = 5)
 }
 \arguments{
-\item{data}{a data frame or tibble that contains subplot, species, and diamaeter at breast height (DBH, in cm)}
+\item{data}{a data frame or tibble that contains subplot, species, and diamaeter at breast height (DBH, in cm).}
 
 \item{plot.size}{The plot size in m^2. The default value is 100 m^2.}
 
@@ -17,5 +17,5 @@ IVI(data, plot.size = 100, n.subplot = 5)
 a tibble containing species name, relative frequency, relative density, relative coverage, and importance value index.
 }
 \description{
-Analyze IVI from DBH data
+Importance value index (IVI) measures how dominant a species is in a given forest area.
 }
