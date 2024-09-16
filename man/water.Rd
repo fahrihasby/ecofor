@@ -21,3 +21,6 @@ water content in soil in percent.
 \description{
 Soil water content
 }
+\examples{
+water(x, y, data = df)
+}

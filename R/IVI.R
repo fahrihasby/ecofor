@@ -9,7 +9,7 @@
 #' @import dplyr
 #' @export
 #'
-#' @examples
+#' @examples IVI(Papandayan)
 IVI <- function(data, plot.size = 100, n.subplot=5){
   result <- data %>%
     group_by(Species) %>%

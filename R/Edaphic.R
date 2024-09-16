@@ -8,7 +8,7 @@
 #' @return water content in soil in percent.
 #' @export
 #'
-#' @examples
+#' @examples water(x, y, data = df)
 water <- function(wet, dry, container, data = NULL) {
   wet <- eval(substitute(wet), data, parent.frame())
   dry <- eval(substitute(dry), data, parent.frame())
@@ -27,7 +27,7 @@ water <- function(wet, dry, container, data = NULL) {
 #' @return organic content in soil (in percent).
 #' @export
 #'
-#' @examples
+#' @examples organic(x, y, z, data = df)
 organic <- function(dry, ash, crucible, data = NULL){
   dry <- eval(substitute(dry), data, parent.frame())
   ash <- eval(substitute(ash), data, parent.frame())
@@ -46,7 +46,7 @@ organic <- function(dry, ash, crucible, data = NULL){
 #' @return mineral content in soil (in percent).
 #' @export
 #'
-#' @examples
+#' @examples mineral(x, y, z, data = df)
 mineral <- function(dry, ash, crucible, data = NULL){
   dry <- eval(substitute(dry), data, parent.frame())
   ash <- eval(substitute(ash), data, parent.frame())
@@ -65,7 +65,7 @@ mineral <- function(dry, ash, crucible, data = NULL){
 #' @return Soil bulk density in gram.cm^-3
 #' @export
 #'
-#' @examples
+#' @examples bulk(i, data = df)
 bulk <- function(dry, data = NULL, d = 7.62, h =5){
   dry <- eval(substitute(dry), data, parent.frame())
   density <- dry/(pi*(0.5*d)^2*h)
@@ -83,7 +83,7 @@ bulk <- function(dry, data = NULL, d = 7.62, h =5){
 #' @return Soil porosityin gram.cm^-3.
 #' @export
 #'
-#' @examples
+#' @examples pore(j, "high organic")
 pore <- function(
     bulk,
     type = c("low organic",

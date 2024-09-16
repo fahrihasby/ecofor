@@ -19,3 +19,6 @@ a tibble containing species name, relative frequency, relative density, relative
 \description{
 Importance value index (IVI) measures how dominant a species is in a given forest area.
 }
+\examples{
+IVI(Papandayan)
+}

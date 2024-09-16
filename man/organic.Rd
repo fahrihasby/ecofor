@@ -21,3 +21,6 @@ organic content in soil (in percent).
 \description{
 Soil organic content
 }
+\examples{
+organic(x, y, z, data = df)
+}

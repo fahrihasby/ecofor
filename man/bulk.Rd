@@ -21,3 +21,6 @@ Soil bulk density in gram.cm^-3
 \description{
 Soil bulk density
 }
+\examples{
+bulk(i, data = df)
+}

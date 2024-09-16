@@ -21,3 +21,6 @@ mineral content in soil (in percent).
 \description{
 Soil mineral content
 }
+\examples{
+mineral(x, y, z, data = df)
+}
