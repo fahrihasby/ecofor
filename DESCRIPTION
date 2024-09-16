@@ -1,11 +1,11 @@
 Package: ecofor
 Type: Package
 Title: Data analysis in forest ecology 
-Version: 0.1.0
+Version: 0.0.1
 Authors@R: c(
     person("Hasby", "Fahri", email = "fahri.hasby@scilifelab.se", role = c("aut", "cre")),
-    person("Elqorni", "Fadli", "Uwais", mail = "fadliuwaiselqorni212@gmail.com", role = "cre"),
-    person("Budianti", "Noviana", mail = "budianti@sith.itb.ac.id", role = "cre"))
+    person("Elqorni", "Fadli", "Uwais", email = "fadliuwaiselqorni212@gmail.com", role = "aut"),
+    person("Budianti", "Noviana", email = "budianti@sith.itb.ac.id", role = "aut"))
 Maintainer: Fahri Hasby <fahri.hasby@scilifelab.se>
 Description: A package to do data analysis in forest ecology. The analysis includes importance value index for tree species. You provide the data.
 License: MIT + file LICENSE
