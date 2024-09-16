@@ -5,6 +5,7 @@
 #' @param data a data frame or tibble that contains subplot, species, and diamaeter at breast height (DBH, in cm).
 #'
 #' @return a tibble containing subplot and H' value.
+#' @import dplyr
 #' @export
 #'
 #' @examples diversity(Papandayan)
