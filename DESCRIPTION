@@ -2,7 +2,10 @@ Package: ecofor
 Type: Package
 Title: Data analysis in forest ecology 
 Version: 0.1.0
-Author: Fahri Hasby, Fadli Uwais Elqorni, Noviana Budianti
+Authors@R: c(
+    person("Hasby", "Fahri", email = "fahri.hasby@scilifelab.se", role = c("aut", "cre")),
+    person("Elqorni", "Fadli", "Uwais", mail = "fadliuwaiselqorni212@gmail.com", role = "cre"),
+    person("Budianti", "Noviana", mail = "budianti@sith.itb.ac.id", role = "cre"))
 Maintainer: Fahri Hasby <fahri.hasby@scilifelab.se>
 Description: A package to do data analysis in forest ecology. The analysis includes importance value index for tree species. You provide the data.
 License: MIT + file LICENSE
@@ -11,7 +14,8 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
 LazyData: true
 Imports: 
-    dplyr
+    dplyr,
+    rlang
 Suggests: 
     testthat (>= 3.0.0),
     openxlsx2,
