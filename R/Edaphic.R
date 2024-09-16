@@ -83,7 +83,7 @@ bulk <- function(dry, data = NULL, d = 7.62, h =5){
 #' @return Soil porosityin gram.cm^-3.
 #' @export
 #'
-#' @examples pore(j, "high organic")
+#' @examples pore(j, "high organic", data = df)
 pore <- function(
     bulk,
     type = c("low organic",
@@ -92,14 +92,17 @@ pore <- function(
     data = NULL){
 
   if (type == "low organic"){
-    1-(eval(substitute(bulk))/ 2.6)*100
+    pore1 <- 1-(eval(substitute(bulk))/ 2.6)*100
+    print(pore1)
   } # low organic content
 
   if (type == "medium organic"){
-    1-(eval(substitute(bulk))/ 2.65)*100
+    pore2 <- 1-(eval(substitute(bulk))/ 2.65)*100
+    print(pore2)
   } #medium organic content
 
   if (type == "high organic"){
-    1-(eval(substitute(bulk))/ 2.7)*100
+    pore3 <- 1-(eval(substitute(bulk))/ 2.7)*100
+    print(pore2)
   } #high organic content
   }
