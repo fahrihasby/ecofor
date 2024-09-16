@@ -2,7 +2,7 @@
 #'
 #' @param data a data frame or tibble that contains subplot, species, and diamaeter at breast height (DBH, in cm).
 #'
-#' @returna a tibble containing species name, total diamater at breast height (in cm), and total biomass (in kg).
+#' @return a tibble containing species name, total diamater at breast height (in cm), and total biomass (in kg).
 #' @import dplyr
 #' @export
 #'
@@ -24,7 +24,7 @@ biomass <- function(data){
 #' @import dplyr
 #' @export
 #'
-#' @examples carbon (Papandayan)
+#' @examples carbon(Papandayan)
 carbon <- function(data, C = 0.5){
   carbon <- Papandayan %>%
     mutate(Biomass = 0.118*(DBH^2.53)) %>%

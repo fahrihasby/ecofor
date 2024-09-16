@@ -24,5 +24,5 @@ Soil porosityin gram.cm^-3.
 Soil porosity measures the density of pore space in a soil matrix, i.e. the opposite of soil bulk density.
 }
 \examples{
-pore(j, "high organic")
+pore(j, "high organic", data = df)
 }
