@@ -15,7 +15,7 @@ biomass <- function(data){
   print(W)
 }
 
-#' Calculating carbon content in tree based on biomass calculated with tree allometry for moist habitat
+#' Calculating carbon content in tree based on tree allometry for moist habitat
 #' published in Brown, 1997.
 #'
 #' @param data a data frame or tibble that contains subplot, species, and diamaeter at breast height (DBH, in cm).
@@ -35,4 +35,26 @@ carbon <- function(data, C = 0.5){
     group_by(.data$Species) %>%
     summarise(DBH = sum(.data$DBH), Biomass = sum(.data$Biomass), Carbon = sum(0.5*.data$Biomass))
   print(carbon)
+}
+
+#' Calculating carbon stock in a given areabased on tree allometry for moist habitat
+#' published in Brown, 1997
+#'
+#' @param data a data frame or tibble that contains subplot, species, and diamaeter at breast height (DBH, in cm).
+#' @param plot.size The plot size in m^2. The default value is 100 m^2.
+#'
+#' @return a tibble containing Subplot name and total carbon content (in ton/ha)
+#'
+#' @import dplyr
+#' @importFrom rlang .data
+#' @export
+#'
+#' @examples carbon.stock(Papandayan)
+carbon.stock <- function(data, plot.size=100){
+  stock <- data %>%
+    mutate(Biomass = 0.118*(.data$DBH^2.53),
+           Carbon = 0.5*.data$Biomass) %>%
+    group_by(.data$Subplot) %>%
+    summarise(Stock = sum(.data$Carbon)/plot.size*10)
+  print(stock)
 }
