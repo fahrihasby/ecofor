@@ -18,7 +18,7 @@ IVI <- function(data, plot.size = 100, n.subplot=5){
     group_by(.data$Species) %>%
     mutate(LAB = pi*(0.5*.data$DBH)^2) %>%
     summarise(Freq_rf = n_distinct(.data$Subplot)/n.subplot,
-              Kr_rf = n()/100,
+              Kr_rf = n()/plot.size,
               Kb_rf = sum(.data$LAB)) %>%
     mutate_if(is.numeric,.funs = ~./sum(.)*100) %>%
     mutate(IVI = .data$Freq_rf + .data$Kr_rf + .data$Kb_rf) %>%
