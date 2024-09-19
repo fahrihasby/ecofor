@@ -1,0 +1,77 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# ecofor
+
+<!-- badges: start -->
+
+<!-- badges: end -->
+
+The goal of ecofor is to ...
+
+## Installation
+
+You can install the development version of ecofor from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("pak")
+pak::pak("fahrihasby/ecofor")
+```
+
+or with:
+
+``` r
+#install.packages("devtools")
+devtools::install_github("fahrihasby/ecofor")
+```
+
+## Example
+
+This is a basic example which shows you how to calculate the importance value index of tree species at a sampling plot:
+
+```{r example}
+library(ecofor)
+IVI(Papandayan)
+## basic example code
+```
+
+You can also take advantage of the 'ggplot2' package to visualise the importance value index, for example:
+
+```{r bar_plot_IVI}
+library(ecofor)
+df <- IVI(Papandayan)
+library(ggplot2)
+ggplot(data = df, aes(reorder(Species, -IVI),IVI)) +
+  geom_bar(stat = "identity") +
+  labs(x = "Species", Y = "Importance value index") + 
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+or you can also display the component with this
+
+```{r stacked_bar_plot_IVI}
+library(ecofor)
+library(data.table)
+df <- melt(IVI(Papandayan)) # melt data
+df <- df[df$variable != "IVI",] # filter out IVI
+df$Species <- factor(df$Species, levels = unique(df$Species))#keep order of Species
+
+library(ggplot2)
+ggplot(data = df[df$variable != "IVI",], 
+       aes(Species, value, fill = variable)) +
+  geom_bar(position = "stack", stat = "identity") +
+  labs(x = "Species", Y = "Importance value index") + 
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
