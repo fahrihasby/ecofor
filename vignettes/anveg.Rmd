@@ -1,0 +1,29 @@
+---
+title: "Analysis of Vegetation"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{anveg}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+# Importance value index
+
+## Concept
+
+## Methods
+
+## Example
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(ecofor)
+Papandayan
+ecofor::IVI(Papandayan)
+```
