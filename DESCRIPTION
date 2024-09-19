@@ -3,9 +3,9 @@ Type: Package
 Title: Data analysis in forest ecology 
 Version: 0.0.1
 Authors@R: c(
-    person("Hasby", "Fahri", email = "fahri.hasby@scilifelab.se", role = c("aut", "cre")),
-    person("Elqorni", "Fadli", "Uwais", email = "fadliuwaiselqorni212@gmail.com", role = "aut"),
-    person("Budianti", "Noviana", email = "budianti@sith.itb.ac.id", role = "aut"))
+    person(family = "Hasby", given = "Fahri", email = "fahri.hasby@scilifelab.se", role = c("aut", "cre")),
+    person(family = "Elqorni", given = "Fadli", middle =  "Uwais", email = "fadliuwaiselqorni212@gmail.com", role = "aut"),
+    person(family = "Budianti", given = "Noviana", email = "budianti@sith.itb.ac.id", role = "aut"))
 Maintainer: Fahri Hasby <fahri.hasby@scilifelab.se>
 Description: A package to do data analysis in forest ecology. The analysis includes importance value index for tree species. You provide the data.
 License: MIT + file LICENSE
@@ -20,9 +20,12 @@ Suggests:
     testthat (>= 3.0.0),
     openxlsx2,
     ggplot2,
-    ggpubr
+    ggpubr,
+    knitr,
+    rmarkdown
 Depends: 
     R (>= 2.10)
 Config/testthat/edition: 3
 URL: https://github.com/fahrihasby/ecofor
 BugReports: https://github.com/fahrihasby/ecofor/issues
+VignetteBuilder: knitr
