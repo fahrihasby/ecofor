@@ -12,7 +12,7 @@ biomass <- function(data){
     mutate(Biomass = 0.118*(.data$DBH^2.53)) %>%
     group_by(.data$Species) %>%
     summarise(DBH = sum(.data$DBH), Biomass = sum(.data$Biomass))
-  print(W)
+  W
 }
 
 #' Calculating carbon content in tree based on tree allometry for moist habitat
@@ -34,7 +34,7 @@ carbon <- function(data, C = 0.5){
     mutate(Biomass = 0.118*(.data$DBH^2.53)) %>%
     group_by(.data$Species) %>%
     summarise(DBH = sum(.data$DBH), Biomass = sum(.data$Biomass), Carbon = sum(0.5*.data$Biomass))
-  print(carbon)
+  carbon
 }
 
 #' Calculating carbon stock in a given areabased on tree allometry for moist habitat
@@ -56,5 +56,19 @@ carbon.stock <- function(data, plot.size=100){
            Carbon = 0.5*.data$Biomass) %>%
     group_by(.data$Subplot) %>%
     summarise(Stock = sum(.data$Carbon)/plot.size*10)
-  print(stock)
+  stock
+}
+
+#' Estimating height from diameter at breast height measurement
+#'
+#' @param DBH Measurement of diameter at breast height (cm)
+#'
+#' @return tree estimated height (in m)
+#'
+#' @export
+#'
+#' @examples est.height(5)
+est.height <- function(DBH){
+  h <- 9.9412*log(DBH)-11.666
+  h
 }

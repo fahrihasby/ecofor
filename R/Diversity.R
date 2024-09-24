@@ -19,5 +19,5 @@ diversity <- function(data){
     summarise(H = -sum(.data$PiLnPi),
               D = 1-sum(.data$PiLnPi^2),
               Dominance = sum(.data$PiLnPi^2))
-  print(div)
+  div
 }

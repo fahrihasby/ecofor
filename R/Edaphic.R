@@ -14,7 +14,7 @@ water <- function(wet, dry, container, data = NULL) {
   dry <- eval(substitute(dry), data, parent.frame())
   alfol <- eval(substitute(alfol), data, parent.frame())
   water <- (dry-alfol)/(wet-alfol)*100
-  print(water)
+  water
 }
 
 #' Soil organic content
@@ -33,7 +33,7 @@ organic <- function(dry, ash, crucible, data = NULL){
   ash <- eval(substitute(ash), data, parent.frame())
   crucible <- eval(substitute(crucible), data, parent.frame())
   organic <- ((dry-crucible)-(ash-crucible))/(dry-crucible)*100
-  print(organic)
+  organic
 }
 
 #' Soil mineral content
@@ -52,7 +52,7 @@ mineral <- function(dry, ash, crucible, data = NULL){
   ash <- eval(substitute(ash), data, parent.frame())
   crucible <- eval(substitute(crucible), data, parent.frame())
   mineral <- (ash-crucible)/(dry-crucible)*100
-  print(mineral)
+  mineral
 }
 
 #' Soil bulk density
@@ -69,7 +69,7 @@ mineral <- function(dry, ash, crucible, data = NULL){
 bulk <- function(dry, data = NULL, d = 7.62, h =5){
   dry <- eval(substitute(dry), data, parent.frame())
   density <- dry/(pi*(0.5*d)^2*h)
-  print(density)
+  density
 }
 
 #' Soil porosity
@@ -93,16 +93,16 @@ pore <- function(
 
   if (type == "low organic"){
     pore1 <- 1-(eval(substitute(bulk))/ 2.6)*100
-    print(pore1)
+    pore1
   } # low organic content
 
   if (type == "medium organic"){
     pore2 <- 1-(eval(substitute(bulk))/ 2.65)*100
-    print(pore2)
+    pore2
   } #medium organic content
 
   if (type == "high organic"){
     pore3 <- 1-(eval(substitute(bulk))/ 2.7)*100
-    print(pore2)
+    pore3
   } #high organic content
   }

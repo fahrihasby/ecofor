@@ -23,5 +23,5 @@ IVI <- function(data, plot.size = 100, n.subplot=5){
     mutate_if(is.numeric,.funs = ~./sum(.)*100) %>%
     mutate(IVI = .data$Freq_rf + .data$Kr_rf + .data$Kb_rf) %>%
     arrange(desc(.data$IVI))
-  print(result)
+  result
 }
