@@ -6,13 +6,36 @@
 #' @import dplyr
 #' @export
 #'
-#' @examples biomass(Papandayan)
-biomass <- function(data){
+#' @examples biomass(Papandayan, "moist")
+biomass <- function(data, method=c("dry", "moist", "wet")){
+  if(method == "dry"){
   W <- data %>%
-    mutate(Biomass = 0.118*(.data$DBH^2.53)) %>%
-    group_by(.data$Species) %>%
-    summarise(DBH = sum(.data$DBH), Biomass = sum(.data$Biomass))
+    left_join(Rho, by = "Species") %>%
+    mutate(Height = 9.9412*log(.data$DBH)-11.666,
+           Biomass = 0.112*(Rho*(.data$DBH^2)*Height)^0.916) %>%
+    group_by(Species) %>%
+    summarise(DBH = sum(.data$DBH), Biomass = sum(.data$Biomass)) %>%
+    arrange(desc(.data$Biomass))
   W
+  } else if (method == "moist"){
+    W <- data %>%
+      left_join(Rho, by = "Species") %>%
+      mutate(Height = 9.9412*log(.data$DBH)-11.666,
+             Biomass = 0.0509*(Rho*(.data$DBH^2)*Height)) %>%
+      group_by(Species) %>%
+      summarise(DBH = sum(.data$DBH), Biomass = sum(.data$Biomass)) %>%
+      arrange(desc(.data$Biomass))
+    W
+  } else {
+    W <- data %>%
+      left_join(Rho, by = "Species") %>%
+      mutate(Height = 9.9412*log(.data$DBH)-11.666,
+             Biomass = 0.0776*(Rho*(.data$DBH^2)*Height)^0.94) %>%
+      group_by(Species) %>%
+      summarise(DBH = sum(.data$DBH), Biomass = sum(.data$Biomass)) %>%
+      arrange(desc(.data$Biomass))
+    W
+  }
 }
 
 #' Calculating carbon content in tree based on tree allometry for moist habitat
@@ -72,3 +95,10 @@ est.height <- function(DBH){
   h <- 9.9412*log(DBH)-11.666
   h
 }
+
+Papandayan %>%
+  left_join(Rho, by = "Species") %>%
+  mutate(Height = 9.9412*log(DBH)-11.666,
+         Biomass = 0.0509*Rho*(DBH^2)*Height) %>%
+  group_by(Species) %>%
+  summarise(DBH = sum(DBH), Biomass = sum(Biomass))
