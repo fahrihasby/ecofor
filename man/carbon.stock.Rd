@@ -2,7 +2,7 @@
 % Please edit documentation in R/Biomass.R
 \name{carbon.stock}
 \alias{carbon.stock}
-\title{Calculating carbon stock in a given areabased on tree allometry for moist habitat
+\title{Calculating carbon stock in a given area based on tree allometry for rainforest habitat
 published in Brown, 1997}
 \usage{
 carbon.stock(data, plot.size = 100)
@@ -16,7 +16,7 @@ carbon.stock(data, plot.size = 100)
 a tibble containing Subplot name and total carbon content (in ton/ha)
 }
 \description{
-Calculating carbon stock in a given areabased on tree allometry for moist habitat
+Calculating carbon stock in a given area based on tree allometry for rainforest habitat
 published in Brown, 1997
 }
 \examples{

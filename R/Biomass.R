@@ -1,4 +1,4 @@
-#' Biomass calculation according to tree allometry for moist habitat in Brown, 1997
+#' Biomass calculation according to tree allometry for different reinforest habitat.
 #'
 #' @param data a data frame or tibble that contains subplot, species, and diamaeter at breast height (DBH, in cm).
 #' @param method a climate parameter that detemines the allometry used, \emph{"dry"}, \emph{"moist"}, and \emph{"wet".}
@@ -41,8 +41,7 @@ biomass <- function(data, method=c("dry", "moist", "wet")){
   }
 }
 
-#' Calculating carbon content in tree based on tree allometry for moist habitat
-#' published in Brown, 1997.
+#' Calculating carbon content in tree based on tree allometry for rainforest habitat.
 #'
 #' @param data a data frame or tibble that contains subplot, species, and diamaeter at breast height (DBH, in cm).
 #' @param C Coefficient for carbon content in a tree.
@@ -62,7 +61,7 @@ carbon <- function(data, C = 0.5){
   carbon
 }
 
-#' Calculating carbon stock in a given areabased on tree allometry for moist habitat
+#' Calculating carbon stock in a given area based on tree allometry for rainforest habitat
 #' published in Brown, 1997
 #'
 #' @param data a data frame or tibble that contains subplot, species, and diamaeter at breast height (DBH, in cm).
@@ -91,7 +90,7 @@ carbon.stock <- function(data, plot.size=100){
 #' @export
 #'
 #' @examples est.height(5)
-est.height <- function(data){
-  h <- 9.9412*log(DBH)-11.666
+est.height <- function(DBH = NULL){
+  h <- (9.9412*log(DBH))-11.666
   h
 }

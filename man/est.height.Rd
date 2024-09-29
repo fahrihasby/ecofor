@@ -4,7 +4,7 @@
 \alias{est.height}
 \title{Estimating height from diameter at breast height measurement}
 \usage{
-est.height(data)
+est.height(DBH = NULL)
 }
 \arguments{
 \item{DBH}{Measurement of diameter at breast height (cm)}

@@ -2,8 +2,7 @@
 % Please edit documentation in R/Biomass.R
 \name{carbon}
 \alias{carbon}
-\title{Calculating carbon content in tree based on tree allometry for moist habitat
-published in Brown, 1997.}
+\title{Calculating carbon content in tree based on tree allometry for rainforest habitat.}
 \usage{
 carbon(data, C = 0.5)
 }
@@ -17,8 +16,7 @@ a tibble containing species name, total diamater at breast height (in cm), total
 and total carbon content (in kg)
 }
 \description{
-Calculating carbon content in tree based on tree allometry for moist habitat
-published in Brown, 1997.
+Calculating carbon content in tree based on tree allometry for rainforest habitat.
 }
 \examples{
 carbon(Papandayan)

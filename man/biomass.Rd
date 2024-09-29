@@ -2,7 +2,7 @@
 % Please edit documentation in R/Biomass.R
 \name{biomass}
 \alias{biomass}
-\title{Biomass calculation according to tree allometry for moist habitat in Brown, 1997}
+\title{Biomass calculation according to tree allometry for different reinforest habitat.}
 \usage{
 biomass(data, method = c("dry", "moist", "wet"))
 }
@@ -15,7 +15,7 @@ biomass(data, method = c("dry", "moist", "wet"))
 a tibble containing species name, total diamater at breast height (in cm), and total biomass (in kg).
 }
 \description{
-Biomass calculation according to tree allometry for moist habitat in Brown, 1997
+Biomass calculation according to tree allometry for different reinforest habitat.
 }
 \examples{
 biomass(Papandayan, "moist")
