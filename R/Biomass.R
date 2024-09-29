@@ -1,9 +1,12 @@
 #' Biomass calculation according to tree allometry for moist habitat in Brown, 1997
 #'
 #' @param data a data frame or tibble that contains subplot, species, and diamaeter at breast height (DBH, in cm).
+#' @param method a climate parameter that detemines the allometry used, \emph{"dry"}, \emph{"moist"}, and \emph{"wet".}
 #'
 #' @return a tibble containing species name, total diamater at breast height (in cm), and total biomass (in kg).
+#'
 #' @import dplyr
+#' @importFrom rlang .data
 #' @export
 #'
 #' @examples biomass(Papandayan, "moist")
@@ -54,9 +57,8 @@ biomass <- function(data, method=c("dry", "moist", "wet")){
 #' @examples carbon(Papandayan)
 carbon <- function(data, C = 0.5){
   carbon <- data %>%
-    mutate(Biomass = 0.118*(.data$DBH^2.53)) %>%
     group_by(.data$Species) %>%
-    summarise(DBH = sum(.data$DBH), Biomass = sum(.data$Biomass), Carbon = sum(0.5*.data$Biomass))
+    summarise(Carbon = sum(0.5*.data$Biomass))
   carbon
 }
 
@@ -75,8 +77,6 @@ carbon <- function(data, C = 0.5){
 #' @examples carbon.stock(Papandayan)
 carbon.stock <- function(data, plot.size=100){
   stock <- data %>%
-    mutate(Biomass = 0.118*(.data$DBH^2.53),
-           Carbon = 0.5*.data$Biomass) %>%
     group_by(.data$Subplot) %>%
     summarise(Stock = sum(.data$Carbon)/plot.size*10)
   stock
@@ -91,14 +91,7 @@ carbon.stock <- function(data, plot.size=100){
 #' @export
 #'
 #' @examples est.height(5)
-est.height <- function(DBH){
+est.height <- function(data){
   h <- 9.9412*log(DBH)-11.666
   h
 }
-
-Papandayan %>%
-  left_join(Rho, by = "Species") %>%
-  mutate(Height = 9.9412*log(DBH)-11.666,
-         Biomass = 0.0509*Rho*(DBH^2)*Height) %>%
-  group_by(Species) %>%
-  summarise(DBH = sum(DBH), Biomass = sum(Biomass))

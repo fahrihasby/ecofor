@@ -4,10 +4,12 @@
 \alias{biomass}
 \title{Biomass calculation according to tree allometry for moist habitat in Brown, 1997}
 \usage{
-biomass(data)
+biomass(data, method = c("dry", "moist", "wet"))
 }
 \arguments{
 \item{data}{a data frame or tibble that contains subplot, species, and diamaeter at breast height (DBH, in cm).}
+
+\item{method}{a climate parameter that detemines the allometry used, \emph{"dry"}, \emph{"moist"}, and \emph{"wet".}}
 }
 \value{
 a tibble containing species name, total diamater at breast height (in cm), and total biomass (in kg).
@@ -16,5 +18,5 @@ a tibble containing species name, total diamater at breast height (in cm), and t
 Biomass calculation according to tree allometry for moist habitat in Brown, 1997
 }
 \examples{
-biomass(Papandayan)
+biomass(Papandayan, "moist")
 }
