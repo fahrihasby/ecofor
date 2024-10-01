@@ -1,108 +1,23 @@
-#' Soil water content
+#' Calculate soil properties
 #'
-#' @param wet soil wet weight in gram.
-#' @param dry soil dry weight in gram.
-#' @param container soil container weight in gram.
-#' @param data data frame containing edaphic data, measured by gravimetric methods.
+#' @param data a data frame or tibble containing soil measurements with gravimetric methods
+#' @param d diameter of the core sampler. The default value is 7.62 cm (2 inch).
+#' @param h height of the core sampler. The default value is 2 cm.
 #'
-#' @return water content in soil in percent.
+#' @return
+#'
+#' @import dplyr
+#' @importFrom rlang .data
 #' @export
 #'
-#' @examples water(x, y, data = df)
-water <- function(wet, dry, container, data = NULL) {
-  wet <- eval(substitute(wet), data, parent.frame())
-  dry <- eval(substitute(dry), data, parent.frame())
-  alfol <- eval(substitute(alfol), data, parent.frame())
-  water <- (dry-alfol)/(wet-alfol)*100
-  water
+#' @examples edaphic(Edaphic_data)
+
+edaphic <- function(data, d = 7.62, h = 5) {
+  result <- data %>% mutate(
+    Bulk = (.data$Core_Wet-.data$Core_Dry)/(pi*(d/2)^2*h),
+    Water_prct = (.data$Core_Wet-.data$Core_Dry)/.data$Core_Wet*100,
+    Organic_prct = ((.data$Cru_Dry-.data$Crucible)-(.data$Cru_Ash-.data$Crucible))/(.data$Cru_Dry-.data$Crucible)*100,
+    Mineral_prct = (.data$Cru_Ash-.data$Crucible)/(.data$Cru_Dry-.data$Crucible)*100
+    )
+  result
 }
-
-#' Soil organic content
-#'
-#' @param dry soil dry weight in gram.
-#' @param ash ash weight in gram.
-#' @param crucible  crucible weight in gram.
-#' @param data data frame containing edaphic data, measured by gravimetric methods.
-#'
-#' @return organic content in soil (in percent).
-#' @export
-#'
-#' @examples organic(x, y, z, data = df)
-organic <- function(dry, ash, crucible, data = NULL){
-  dry <- eval(substitute(dry), data, parent.frame())
-  ash <- eval(substitute(ash), data, parent.frame())
-  crucible <- eval(substitute(crucible), data, parent.frame())
-  organic <- ((dry-crucible)-(ash-crucible))/(dry-crucible)*100
-  organic
-}
-
-#' Soil mineral content
-#'
-#' @param dry soil dry weight in gram.
-#' @param ash ash weight in gram.
-#' @param crucible  crucible weight in gram.
-#' @param data data frame containing edaphic data, measured by gravimetric methods.
-#'
-#' @return mineral content in soil (in percent).
-#' @export
-#'
-#' @examples mineral(x, y, z, data = df)
-mineral <- function(dry, ash, crucible, data = NULL){
-  dry <- eval(substitute(dry), data, parent.frame())
-  ash <- eval(substitute(ash), data, parent.frame())
-  crucible <- eval(substitute(crucible), data, parent.frame())
-  mineral <- (ash-crucible)/(dry-crucible)*100
-  mineral
-}
-
-#' Soil bulk density
-#'
-#' @param dry soil dry weight in gram.
-#' @param data data frame containing edaphic data, measured by gravimetric methods.
-#' @param d diameter of the core sampler in cm. The default value is 7.62 cm (3").
-#' @param h height of the core sampler in cm. The default value is 5 cm.
-#'
-#' @return Soil bulk density in gram.cm^-3
-#' @export
-#'
-#' @examples bulk(i, data = df)
-bulk <- function(dry, data = NULL, d = 7.62, h =5){
-  dry <- eval(substitute(dry), data, parent.frame())
-  density <- dry/(pi*(0.5*d)^2*h)
-  density
-}
-
-#' Soil porosity
-#'
-#' Soil porosity measures the density of pore space in a soil matrix, i.e. the opposite of soil bulk density.
-#'
-#' @param bulk bulk density in gram.cm^-3.
-#' @param type type of soil. Determining the average porosity in the given type, expressed in gram.cm^-3. "low organic" 2,7 gram.cm^-3, "medium organic" 2,65 gram.cm^-3, "high organic" 2,6 gram.cm^-3.
-#' @param data data frame containing edaphic data, measured by gravimetric methods.
-#'
-#' @return Soil porosityin gram.cm^-3.
-#' @export
-#'
-#' @examples pore(j, "high organic", data = df)
-pore <- function(
-    bulk,
-    type = c("low organic",
-             "medium organic",
-             "high organic"),
-    data = NULL){
-
-  if (type == "low organic"){
-    pore1 <- 1-(eval(substitute(bulk))/ 2.6)*100
-    pore1
-  } # low organic content
-
-  if (type == "medium organic"){
-    pore2 <- 1-(eval(substitute(bulk))/ 2.65)*100
-    pore2
-  } #medium organic content
-
-  if (type == "high organic"){
-    pore3 <- 1-(eval(substitute(bulk))/ 2.7)*100
-    pore3
-  } #high organic content
-  }
