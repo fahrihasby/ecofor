@@ -4,7 +4,7 @@
 #' @param d diameter of the core sampler. The default value is 7.62 cm (2 inch).
 #' @param h height of the core sampler. The default value is 2 cm.
 #'
-#' @return
+#' @return a tibble of the original input data together with soil bulk density, water content (%), organic content (%), and mineral content(%).
 #'
 #' @import dplyr
 #' @importFrom rlang .data
