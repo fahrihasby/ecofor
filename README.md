@@ -6,7 +6,8 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of ecofor is to …
+The goal of ‘ecofor’ package is to offer tools that simplify routine
+analysis in forest ecology.
 
 ## Installation
 
